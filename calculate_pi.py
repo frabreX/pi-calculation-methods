@@ -1,7 +1,7 @@
 from decimal import Decimal, getcontext
 from tqdm import tqdm
-from formule import *
-from side_functions import *
+from pi_algorithms import *
+from digit_utils import count_matching_digits
 from mpmath import mp
 import time
 
@@ -49,7 +49,6 @@ if __name__ == "__main__":
 
 
     # it is possible to load pi from a local file or with the built-in function mp
-    #pi_true = load_pi_from_file("C:/Users/frabr/Documents/pi/rv_pi/pi.txt")
 
     if scelta.__name__ == "ArctanTaylor_parallel":
         pi_approx = scelta(prec)
@@ -59,7 +58,6 @@ if __name__ == "__main__":
         pi_approx = scelta()
 
     # it is possible to load pi from a local file or with the built-in function mp
-    # pi_true = load_pi_from_file("C:/Users/frabr/Documents/pi/rv_pi/pi.txt")
 
     mp.dps = prec
     pi_true = mp.pi
@@ -69,6 +67,6 @@ if __name__ == "__main__":
 
     matching_digits = count_matching_digits(approx_str, true_str)
 
-    print(f"\nValore approssimato di π ({scelta}): {approx_str[:10]}")
-    print(f"Valore reale di π:                  {true_str[:10]}...")
+    print(f"\nValore approssimato di pi ({scelta.__name__}): {approx_str[:50]}")
+    print(f"Valore di riferimento: {true_str[:50]}")
     print(f"Cifre corrette: {matching_digits - 1}")

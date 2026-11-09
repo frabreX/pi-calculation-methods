@@ -1,7 +1,8 @@
 import time
 from tqdm import tqdm
 from decimal import Decimal, getcontext
-from side_functions import  *
+from digit_utils import count_matching_digits
+from mpmath import mp as mp_math
 import multiprocessing as mp
 from multiprocessing import Pool
 import csv
@@ -135,7 +136,8 @@ def Archimede():
     sup_str = str(pi_sup)
     inf_str = str(pi_inf)
 
-    pi_true = load_pi_from_file("C:/Users/frabr/Documents/pi/rv_pi/pi.txt")
+    mp_math.dps = getcontext().prec
+    pi_true = mp_math.pi
     true_str = str(pi_true)
 
     matching_digits_sup = count_matching_digits(sup_str, true_str)
